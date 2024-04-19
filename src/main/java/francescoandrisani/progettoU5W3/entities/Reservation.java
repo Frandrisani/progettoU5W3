@@ -9,7 +9,6 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Reservation {
     @Id
@@ -23,6 +22,11 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
+
+    public Reservation(Event event, User user) {
+        this.user = user;
+        this.event = event;
+    }
 
 
 }
