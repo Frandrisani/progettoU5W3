@@ -1,5 +1,6 @@
 package francescoandrisani.progettoU5W3.entities;
 
+import francescoandrisani.progettoU5W3.payloads.ReservationRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,10 +24,6 @@ public class Reservation {
     @JoinColumn(name = "event_id")
     private Event event;
 
-    public Reservation(Event event, User user) {
-        this.user = user;
-        this.event = event;
+    public Reservation(ReservationRequestDTO body) {
     }
-
-
 }

@@ -47,6 +47,7 @@ public class User implements UserDetails {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = USerRole.SPETTATORE;
     }
 
     @Override

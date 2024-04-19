@@ -25,18 +25,18 @@ public class ReservationService {
     @Autowired
     private EventDAO eventDAO;
 
-    public Page<Reservation> getEvents(int page, int size, String sortBy){
+    public Page<Reservation> getReservations(int page, int size, String sortBy){
         if(size > 20) size = 20;
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
         return this.reservationDAO.findAll(pageable);
     }
 
-    public Reservation save(ReservationRequestDTO body, User user) {
+    public Reservation save(ReservationRequestDTO body) {
         Event event = this.eventDAO.findById(body.eventId()).orElseThrow(() -> new NotFound(body.eventId()));
         if (event.getAvailableSeats() <= 0) {
             throw new FullException(body.eventId());
         }
-        Reservation newReservation = new Reservation(event, user);
+        Reservation newReservation = new Reservation(body);
         newReservation = reservationDAO.save(newReservation);
 
         event.setAvailableSeats(event.getAvailableSeats() - 1);
