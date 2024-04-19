@@ -7,6 +7,13 @@ import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 public class ExceptionsHandler {
+
+    @ExceptionHandler(NotFound.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorDTO hendleNotFound(NotFound ex){
+        return new ErrorDTO(ex.getMessage(), LocalDateTime.now());
+    }
+
     //Errore generato quando non si ritrova un evento in una ricerca
     @ExceptionHandler(EventNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
