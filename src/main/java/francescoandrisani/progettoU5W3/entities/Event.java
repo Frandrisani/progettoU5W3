@@ -36,7 +36,7 @@ public class Event {
     @Column(nullable = false)
     private int availableSeats;
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "event")
     private Set<Reservation> reservations = new HashSet<>();
 
     public Event(String title, String description, LocalDateTime dateTime, String location, int availableSeats) {
